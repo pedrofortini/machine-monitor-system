@@ -10,7 +10,7 @@ REST API was constructed using the **SpringBoot** framework, and the Frontend us
 
 ### Dependencies
 
-To run the application, install the lastest versions (except Java, wich must be version 8) 
+To run the application, install the lastest versions (except Java, which must be version 8) 
 of the following applications:
 
 - [Java 8](https://www.java.com/pt_BR/download/)
