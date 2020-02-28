@@ -54,9 +54,18 @@ The following figure is the ER Diagram for the system.
 
 ![alt text](./src/main/resources/ER_Diagram.png "ER-Diagram")
 
-
+The system manages two Entities: Machines and Users. Each machine have only one Admin User (One To Many relationship),
+an User can be the Admin User of 0 or more machines. Every time the state of a machine (Running or Down) changes, this
+event is recorded in the Machine Event Log Entity. The machine also keeps track of it's last downtime. A user can 
+have acess to 0 or more machines, and machines have 1 or more Users who can acess them, this succumbs to a Many To Many 
+relationship, maintained in the user_acess table.
 
 
 ## Usage
 
-Explicar brevemente o que pode ser feito no sistema (usar prints)
+The application have three main menus:
+
+- **Manage Users**: Displays the data of registered users. Allows the creation/editing of user data.
+- **Manage Machines**: Displays the data of registered machines. Allows the creation/editing of machine data. Displays 
+the users who have access to the machine, and the list of machine events.
+- **Manage User Acess to Machines**: Allows the creation of users acess requests to machines.
