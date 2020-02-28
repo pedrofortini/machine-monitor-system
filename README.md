@@ -26,7 +26,7 @@ Maven is used to build the backend SpringBoot API, running the following command
 
 ### Testing 
 
-Unit tests were included for the SpringBoot API, to execute them run the command:
+The SpringBoot API was tested using JUnit, to execute the tests run:
 
 `mvn test`
 
