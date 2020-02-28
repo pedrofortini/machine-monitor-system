@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.machine.monitor.api</groupId>
-	<artifactId>MachineMonitorAPI</artifactId>
+	<artifactId>machine-monitor-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>MachineMonitorAPI</name>
+	<name>machine-monitor-system</name>
 	<description>API responsible for mananging and monitoring a group of computers</description>
 
 	<parent>
