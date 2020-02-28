@@ -1,0 +1,11 @@
+2. If the number os users of a system is increasing considerably over a short period of time, it needs to scale. Scaling
+a system can usually be done in two ways: horizontal scaling or vertical scaling. Horizontal scaling means that
+you scale by adding more machines into your pool of resources whereas Vertical scaling means that you scale by adding
+more power (CPU, RAM) to an existing machine. In general, horizontal scaling works better than vertical scaling.
+
+In the case of the developed system, we can scale each of its three layers horizontally, in response to an increase
+in load. More specifically:
+
+- Frontend Layer: 
+- Backend Layer:
+- Database Layer:
