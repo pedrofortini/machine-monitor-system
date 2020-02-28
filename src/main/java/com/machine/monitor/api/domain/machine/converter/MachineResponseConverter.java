@@ -5,9 +5,6 @@ import com.machine.monitor.api.domain.machine.MachineEventLog;
 import io.swagger.model.MachineDetailResponse;
 import io.swagger.model.MachineEventLogResponse;
 import io.swagger.model.MachineResponse;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;

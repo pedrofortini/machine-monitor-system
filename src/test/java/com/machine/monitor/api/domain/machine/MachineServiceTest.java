@@ -4,7 +4,6 @@ import com.machine.monitor.api.application.exception.PersistenceException;
 import com.machine.monitor.api.application.exception.ResourceNotFoundException;
 import com.machine.monitor.api.infrastructure.persistence.MachineEventLogRepository;
 import com.machine.monitor.api.infrastructure.persistence.MachineRepository;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -5,7 +5,6 @@ import com.machine.monitor.api.application.exception.PersistenceException;
 import com.machine.monitor.api.application.exception.ResourceNotFoundException;
 import com.machine.monitor.api.infrastructure.persistence.MachineEventLogRepository;
 import com.machine.monitor.api.infrastructure.persistence.MachineRepository;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

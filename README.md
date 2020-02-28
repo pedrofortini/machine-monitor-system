@@ -35,21 +35,27 @@ The SpringBoot API was tested using JUnit, to execute the tests run:
 To run the backend SpringBoot API, run:
 
  `mvn spring-boot:run`
- 
+
+The Backend API endpoints were generated and documented using [Swagger](https://swagger.io/). The swagger documentation
+is located on `/src/main/resources/swagger.yaml`, use [Swagger Editor](https://editor.swagger.io/) to visualize it.
+
 To run the React.js client, enter the app folder and run:
 
 `yarn start`
 
 You can acess the application in a web browser via the URL `http://localhost:3000`. Following Figure shows the Home 
-page of the application.
+page of the application. 
 
 ![alt text](./src/main/resources/machine_monitor_home.png "MachineMonitor")
 
 ## Definitions
 
+The following figure is the ER Diagram for the system.
+
 ![alt text](./src/main/resources/ER_Diagram.png "ER-Diagram")
 
-Explicar rapidamente a modelagem, e citar o uso do H2
+
+
 
 ## Usage
 

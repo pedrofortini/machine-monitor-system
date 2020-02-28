@@ -2,16 +2,13 @@ package com.machine.monitor.api.domain.machine;
 
 
 import com.machine.monitor.api.domain.user.User;
-import org.joda.time.DateTime;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

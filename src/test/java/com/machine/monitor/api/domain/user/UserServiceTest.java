@@ -2,9 +2,7 @@ package com.machine.monitor.api.domain.user;
 
 import com.machine.monitor.api.application.exception.PersistenceException;
 import com.machine.monitor.api.application.exception.ResourceNotFoundException;
-import com.machine.monitor.api.domain.machine.Machine;
 import com.machine.monitor.api.infrastructure.persistence.UserRepository;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
