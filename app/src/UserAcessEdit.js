@@ -3,12 +3,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
-class UserEdit extends Component {
+class UserAcessEdit extends Component {
 
   emptyItem = {
-    login: '',
-    name: '',
-    user_is_admin: false
+    user_login: '',
+    machine_id: ''
   };
 
   constructor(props) {
@@ -21,24 +20,15 @@ class UserEdit extends Component {
   }
 
   async componentDidMount() {
-    if (this.props.match.params.login !== 'new') {
-      const user = await (await fetch(`/machine-monitor-api/v1/users/` + this.props.match.params.login)).json();
-      this.setState({item: user});
-    }
+      this.setState({item: this.emptyItem});
   }
 
   handleChange(event) {
     const target = event.target;
     const value = target.value;
-    const type = target.type;
     const name = target.name;
     let item = {...this.state.item};
-
-    if (type === 'checkbox' && name === 'user_is_admin') {
-        item[name] = !item[name];
-    } else {
-      item[name] = value;
-    }
+    item[name] = value;
     this.setState({item});
   }
 
@@ -48,8 +38,8 @@ class UserEdit extends Component {
 
     let response;
     try{
-        response = await fetch('/machine-monitor-api/v1/users', {
-            method: 'PUT',
+        response = await fetch('/machine-monitor-api/v1/users/acess/request', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -62,16 +52,16 @@ class UserEdit extends Component {
     }
     if (!response.ok) {
        console.log(response);
-       alert("ERROR: Invalid User data Provided!");
+       alert("ERROR: Invalid acess data!");
     }
     else {
-        this.props.history.push('/users');
+        this.props.history.push('/');
     }
   }
 
   render() {
     const {item} = this.state;
-    const title = <h2>{item.login !== ' ' ? 'Edit User' : 'Create User'}</h2>;
+    const title = <h2>Request User Acess to Machine</h2>;
 
     return <div>
       <AppNavbar/>
@@ -79,27 +69,20 @@ class UserEdit extends Component {
         {title}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label for="login">Login</Label>
-            <Input type="text" name="login" id="login" value={item.login || ''}
-                   onChange={this.handleChange} autoComplete="login"
+            <Label for="user_login">User Login</Label>
+            <Input type="text" name="user_login" id="user_login" value={item.user_login || ''}
+                   onChange={this.handleChange} autoComplete="user_login"
                    style={{width: "370px"}} />
           </FormGroup>
           <FormGroup>
-            <Label for="name">Name</Label>
-            <Input type="text" name="name" id="name" value={item.name || ''}
-                   onChange={this.handleChange} autoComplete="name"
-                   style={{width: "670px"}} />
-          </FormGroup>
-          <FormGroup>
-            <Input type="checkbox" name="user_is_admin" id="user_is_admin"
-                             checked={item.user_is_admin} onChange={this.handleChange} />
-            <Label>
-                   User is Admin
-             </Label>
+                      <Label for="machine_id">Machine Id</Label>
+                      <Input type="text" name="machine_id" id="machine_id" value={item.machine_id || ''}
+                             onChange={this.handleChange} autoComplete="machine_id"
+                             style={{width: "370px"}} />
           </FormGroup>
           <FormGroup>
             <Button color="primary" type="submit">Save</Button>{' '}
-            <Button color="secondary" tag={Link} to="/users">Cancel</Button>
+            <Button color="secondary" tag={Link} to="/">Cancel</Button>
           </FormGroup>
         </Form>
       </Container>
@@ -107,4 +90,4 @@ class UserEdit extends Component {
   }
 }
 
-export default withRouter(UserEdit);
+export default withRouter(UserAcessEdit);

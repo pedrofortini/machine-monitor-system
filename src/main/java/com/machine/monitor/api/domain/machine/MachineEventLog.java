@@ -2,12 +2,15 @@ package com.machine.monitor.api.domain.machine;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "MachineDownTimeLog")
@@ -27,7 +30,8 @@ public class MachineEventLog implements Serializable {
     private Machine machine;
 
     @Column(name="time_stamp")
-    private DateTime timeStamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeStamp;
 
     @Column(name="event_type")
     @Enumerated(EnumType.STRING)
@@ -49,11 +53,11 @@ public class MachineEventLog implements Serializable {
         this.machine = machine;
     }
 
-    public DateTime getTimeStamp() {
+    public Date getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(DateTime timeStamp) {
+    public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
     }
 

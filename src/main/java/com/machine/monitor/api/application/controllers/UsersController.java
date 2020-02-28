@@ -33,15 +33,6 @@ public class UsersController implements UsersApi {
 	private UserResponseConverter userResponseConverter;
 
 	@Override
-	public ResponseEntity<List<UserTemplate>> getAdminUsers() {
-
-		List<User> users = userService.getAllAdminUsers();
-		List<UserTemplate> userTemplates = userResponseConverter.convertUserList(users);
-
-		return ResponseEntity.ok(userTemplates);
-	}
-
-	@Override
 	public ResponseEntity<UserTemplate> getUserByLogin(@PathVariable("login") String login) {
 
 		User user = userService.findUserByLogin(login);

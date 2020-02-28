@@ -22,6 +22,10 @@ public class MachineRequestConverter {
 
         Machine machine = new Machine();
 
+        if(request.getId() != null){
+            machine.setId(request.getId());
+        }
+
         machine.setName(request.getName());
         machine.setMachineIsUp(request.getMachineIsUp());
 

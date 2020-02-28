@@ -132,28 +132,6 @@ paths:
         '404':
           description: "No Users found"
 
-  /users/admin:
-    get:
-      tags:
-        - User
-      summary: Gets all the Admin Users
-      operationId: getAdminUsers
-      produces:
-        - "application/json"
-      responses:
-        '200':
-          description: "User data suscessfully retrieved"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/UserTemplate"
-        '500':
-          description: "Internal error ocurred while getting User data"
-        '400':
-          description: "Invalid Request"
-        '404':
-          description: "No Users found"
-
   /users/{login}:
     get:
       tags:
@@ -213,6 +191,10 @@ definitions:
       - admin_user
       - ip_address
     properties:
+      id:
+        type: integer
+        format: int64
+        description: Id of the Machine
       name:
         type: string
         description: Name of the Machine

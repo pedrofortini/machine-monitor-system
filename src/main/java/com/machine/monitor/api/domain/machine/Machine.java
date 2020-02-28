@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +39,8 @@ public class Machine implements Serializable {
     private String ipAddress;
 
     @Column(name="last_downtime")
-    private DateTime lastDownTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastDownTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="admin_user", nullable = false)
@@ -76,11 +79,11 @@ public class Machine implements Serializable {
         this.machineIsUp = machineIsUp;
     }
 
-    public DateTime getLastDownTime() {
+    public Date getLastDownTime() {
         return lastDownTime;
     }
 
-    public void setLastDownTime(DateTime lastDownTime) {
+    public void setLastDownTime(Date lastDownTime) {
         this.lastDownTime = lastDownTime;
     }
 

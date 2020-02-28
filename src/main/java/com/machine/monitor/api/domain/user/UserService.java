@@ -54,9 +54,4 @@ public class UserService {
 
 		return Optional.ofNullable(userRepository.findAll()).orElse(new ArrayList<>());
 	}
-
-	public List<User> getAllAdminUsers(){
-
-		return Optional.ofNullable(userRepository.findByUserIsAdminTrue()).orElse(new ArrayList<>());
-	}
 }

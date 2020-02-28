@@ -13,6 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.reflect.Whitebox;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,7 +95,7 @@ public class MachineServiceTest {
 
         Machine savedMachine = service.saveMachine(machine);
         assertThat(savedMachine.isMachineIsUp()).isFalse();
-        assertThat(savedMachine.getLastDownTime()).isLessThanOrEqualTo(new DateTime());
+        assertThat(savedMachine.getLastDownTime()).isBeforeOrEqualsTo(new Date());
     }
 
     @Test
@@ -123,7 +124,7 @@ public class MachineServiceTest {
         MachineEventLog savedMachineEventLog = service.registerNewMachineEvent(machine);
 
         assertThat(savedMachineEventLog.getType()).isEqualTo(MachineEventType.NOT_RUNNING);
-        assertThat(savedMachineEventLog.getTimeStamp()).isLessThanOrEqualTo(new DateTime());
+        assertThat(savedMachineEventLog.getTimeStamp()).isBeforeOrEqualsTo(new Date());
         assertThat(savedMachineEventLog.getMachine().getId()).isEqualTo(machine.getId());
     }
 
@@ -139,7 +140,7 @@ public class MachineServiceTest {
         MachineEventLog savedMachineEventLog = service.registerNewMachineEvent(machine);
 
         assertThat(savedMachineEventLog.getType()).isEqualTo(MachineEventType.RUNNING);
-        assertThat(savedMachineEventLog.getTimeStamp()).isLessThanOrEqualTo(new DateTime());
+        assertThat(savedMachineEventLog.getTimeStamp()).isBeforeOrEqualsTo(new Date());
         assertThat(savedMachineEventLog.getMachine().getId()).isEqualTo(machine.getId());
     }
 

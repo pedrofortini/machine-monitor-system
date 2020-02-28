@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,12 +47,17 @@ public class MachineService {
 
 		try {
 
+
 			if (!machine.isMachineIsUp()) {
-				machine.setLastDownTime(new DateTime());
+				machine.setLastDownTime(new Date());
+			}
+			else{
+				machine.setLastDownTime(getLastDownTime(machine));
 			}
 
+			Machine savedMachine = this.machineRepository.save(machine);
 			this.registerNewMachineEvent(machine);
-			return this.machineRepository.save(machine);
+			return savedMachine;
 		}
 		catch (Exception e){
 
@@ -63,13 +69,27 @@ public class MachineService {
 		}
 	}
 
+	private Date getLastDownTime(Machine machine){
+
+		if(machine.getId() == null){
+			return null;
+		}
+
+		Optional<Machine> machineOptional = machineRepository.findById(machine.getId());
+		if(!machineOptional.isPresent()){
+			return null;
+		}
+
+		return machineOptional.get().getLastDownTime();
+	}
+
 	public MachineEventLog registerNewMachineEvent(Machine machine){
 
 		try {
 			MachineEventLog machineEvent = new MachineEventLog();
 
 			machineEvent.setMachine(machine);
-			machineEvent.setTimeStamp(new DateTime());
+			machineEvent.setTimeStamp(new Date());
 
 			if (!machine.isMachineIsUp()) {
 				machineEvent.setType(MachineEventType.NOT_RUNNING);

@@ -10,6 +10,9 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +30,7 @@ public class MachineResponseConverter {
 
         detailResponse.setId(machine.getId());
         detailResponse.setAdminUser(machine.getAdminUser().getLogin());
-        detailResponse.setLastDowntime(convertDateTimeToString(machine.getLastDownTime(), "Never"));
+        detailResponse.setLastDowntime(convertDateToString(machine.getLastDownTime(), "Never"));
         detailResponse.setMachineIsUp(machine.isMachineIsUp());
         detailResponse.setIpAddress(machine.getIpAddress());
         detailResponse.setName(machine.getName());
@@ -37,6 +40,9 @@ public class MachineResponseConverter {
                                                                     .collect(Collectors.toList());
         detailResponse.setMachineEventsLog(eventLogResponses);
 
+        List<String> userAcess = machine.getUserAcess().stream().map(u -> u.getLogin()).collect(Collectors.toList());
+        detailResponse.setUsersAcess(userAcess);
+
         return detailResponse;
     }
 
@@ -44,7 +50,7 @@ public class MachineResponseConverter {
 
         MachineEventLogResponse eventLogResponse = new MachineEventLogResponse();
         eventLogResponse.setType(eventLog.getType().name());
-        eventLogResponse.setTimeStamp(convertDateTimeToString(eventLog.getTimeStamp(), ""));
+        eventLogResponse.setTimeStamp(convertDateToString(eventLog.getTimeStamp(), ""));
 
         return eventLogResponse;
     }
@@ -57,19 +63,19 @@ public class MachineResponseConverter {
         machineResponse.setName(machine.getName());
         machineResponse.setMachineIsUp(machine.isMachineIsUp());
         machineResponse.setIpAddress(machine.getIpAddress());
-        machineResponse.setLastDowntime(convertDateTimeToString(machine.getLastDownTime(), "Never"));
+        machineResponse.setLastDowntime(convertDateToString(machine.getLastDownTime(), "Never"));
 
         return machineResponse;
     }
 
-    private String convertDateTimeToString(DateTime dateTime, String defaultValue){
+    private String convertDateToString(Date date, String defaultValue){
 
         String ret = defaultValue;
 
-        if(dateTime != null){
+        if(date != null){
 
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-            ret = fmt.print(dateTime);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            ret = dateFormat.format(date);
         }
 
         return ret;
