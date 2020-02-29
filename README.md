@@ -41,6 +41,8 @@ is located on `/src/main/resources/swagger.yaml`, use [Swagger Editor](https://e
 
 To run the React.js client, enter the app folder and run:
 
+`yarn add bootstrap@4.1.3 react-cookie@3.0.4 react-router-dom@4.3.1 reactstrap@6.5.0`
+
 `yarn start`
 
 You can acess the application in a web browser via the URL `http://localhost:3000`. Following Figure shows the Home 
